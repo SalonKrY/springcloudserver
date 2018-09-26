@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.websocket;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,11 +13,11 @@ public class WebSocketConfig  implements WebSocketConfigurer {
 	
 	@Override      
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {          
-//		registry.addHandler(webSocketServer(), "/webSocketServer/*");     
+		registry.addHandler(webSocketServer(), "/webSocketServer/*");     
 	}        
 	
-//	@Bean    
-//	public WebSocketHandler webSocketServer() {          
-//		return new WebSocketServer();      
-//	}  
+	@Bean    
+	public WebSocketHandler webSocketServer() {          
+		return new WebSocketServer();      
+	}  
 }

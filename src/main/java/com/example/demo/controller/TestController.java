@@ -9,10 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.bean.User;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value="测试接口Controller类",tags= {"测试接口"})
 @RestController
 @RequestMapping("/test")
 public class TestController {
 
+	@ApiOperation("第一个程序")
 	@GetMapping("/hw")
 //	跨域配置
 //	@CrossOrigin(origins="http://localhost:8088")
