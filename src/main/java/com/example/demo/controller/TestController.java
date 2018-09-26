@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.bean.PropertiesConfig;
 import com.example.demo.bean.User;
 
 import io.swagger.annotations.Api;
@@ -42,7 +44,15 @@ public class TestController {
 	}
 	
 	@GetMapping("/testException")
-	public User testException() throws Exception{
+	public User testException() throws Exception {
 		 throw new Exception("发生异常");
+	}
+	
+	@Autowired
+	private PropertiesConfig propertiesConfig;
+	
+	@GetMapping("/getLogin")
+	public String getLogin() throws Exception {
+		return propertiesConfig.getLoginInfo();
 	}
 }
