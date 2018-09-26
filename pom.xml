@@ -82,6 +82,18 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
+		<!-- jdbcTemplate -->
+		<dependency>	
+			<groupId>org.springframework.boot</groupId>	
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency> 
+		<!-- MySQL连接 -->
+		<dependency>	
+			<groupId>mysql</groupId>	
+			<artifactId>mysql-connector-java</artifactId>	
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

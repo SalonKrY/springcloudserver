@@ -1,0 +1,11 @@
+spring:
+ profiles:
+  active : dev
+ http:
+  encoding:
+   force : true
+ datasource:    
+   driver-class-name : com.mysql.jdbc.Driver    
+   url: jdbc:mysql://localhost:3306/springboot    
+   username: root    
+   password: root

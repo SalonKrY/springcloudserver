@@ -11,6 +11,17 @@ public class User {
 	@JSONField(format="yyyy-MM-dd")
 	private Date birthday;
 	
+	public User() {
+		
+	}
+	
+	public User(String id,String userName,String password,Date birthday) {
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.birthday = birthday;
+	}
+	
 	public String getId() {
 		return id;
 	}
