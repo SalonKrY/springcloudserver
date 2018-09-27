@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -14,8 +15,7 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 @Configuration
-@EnableWebSocket
-public class WebConfig extends WebMvcConfigurerAdapter{
+public class WebConfig{
 	
 	@Bean
     public FastJsonHttpMessageConverter fastJsonHttpMessageConverter() {
@@ -32,26 +32,21 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     }
 	
 	/**
-	 * 跨域配置
+	 * 跨域全局配置
 	 */
-//	@Bean    
-//	public WebMvcConfigurer corsConfigurer() {        
-//		return new WebMvcConfigurerAdapter() {          
-//			@Override          
-//			public void addCorsMappings(CorsRegistry registry) {              
-//				registry.addMapping("/fastjson/**")                      
-//				.allowedOrigins("http://localhost:8088");// 允许 8088 端口访问          
-//				}        
-//		};
-//	}
-
-	/**
-	 * 跨域配置
-	 */
-	@Override    
-	public void addCorsMappings(CorsRegistry registry) {        
-		registry.addMapping("/test/**")   
-		.allowedOrigins("http://localhost:8088");// 允许 8088 端口访问    }
+	@Bean    
+	public WebMvcConfigurer corsConfigurer() {        
+		return new WebMvcConfigurerAdapter() {          
+			@Override          
+			public void addCorsMappings(CorsRegistry registry) {              
+				registry.addMapping("/fastjson/**")                      
+				.allowedOrigins("http://localhost:8088")// 允许 8088 端口访问
+				.allowedMethods("GET", "POST", "DELETE", "PUT", "OPTIONS")
+				.allowCredentials(false)
+				.maxAge(3600);
+				}        
+		};
 	}
+
 	
 }

@@ -28,7 +28,7 @@ public class TestController {
 	
 	@ApiOperation("第一个程序")
 	@GetMapping("/hw")
-//	跨域配置
+//	跨域局部配置
 //	@CrossOrigin(origins="http://localhost:8088")
 	public String hw() {
 		return "hello world";
