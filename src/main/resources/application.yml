@@ -1,11 +1,11 @@
 spring:
  profiles:
-  active : dev
+  active: dev
  http:
   encoding:
-   force : true
+   force: true
  datasource:    
-   driver-class-name : com.mysql.jdbc.Driver    
+   driver-class-name: com.mysql.jdbc.Driver    
    url: jdbc:mysql://localhost:3306/springboot    
    username: root    
    password: root

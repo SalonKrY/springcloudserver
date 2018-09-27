@@ -1,5 +1,0 @@
-login:
- user:
-  loginName : chentianhao
-  password : 1111111
-  loginInfo : the account {login.user.loginName} logined by password {login.user.password}

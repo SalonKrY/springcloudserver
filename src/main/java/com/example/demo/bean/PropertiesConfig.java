@@ -2,23 +2,24 @@ package com.example.demo.bean;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+import org.springframework.test.context.ContextConfiguration;
 
 @Component
-@Configuration
-//@PropertySource(value = "classpath:config/login.yml")
-@ConfigurationProperties(prefix = "login.user")
+@PropertySource(value = "classpath:config/login.properties")
+//@ConfigurationProperties(prefix = "login.user")
 public class PropertiesConfig {
 
-//	@Value("${login.user.loginName}")
+	@Value("${login.user.loginName}")
 	private String loginName;
 	
-//	@Value("${login.user.password}")
+	@Value("${login.user.password}")
 	private String password;
 
-//	@Value("${login.user.loginInfo}")
+	@Value("${login.user.loginInfo}")
 	private String loginInfo;
 	
 	public String getLoginName() {
