@@ -14,7 +14,7 @@ import com.rabbitmq.client.Envelope;
 
 public class SimpleReceiver {
 
-	private static final String QUENE_NAME = "simple_quene_name";
+	private static final String QUEUE_NAME = "simple_queue_name";
 	
 	public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
 		//1.获得连接
@@ -33,7 +33,7 @@ public class SimpleReceiver {
 		 * autoDelete: true 表示当没有任何消费者使用时，自动删除该队列
 		 * arguments: 该队列其他配置参数
 		 */
-		channel.queueDeclare(QUENE_NAME, false, false, false, null);
+		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		
 		
 		//4.创建一个回调的消费者
@@ -46,6 +46,6 @@ public class SimpleReceiver {
                 System.out.println("SimpleReceiver recevie message：" + message + "at " + new Date());
             }
 		};
-		channel.basicConsume(QUENE_NAME, comsumer);
+		channel.basicConsume(QUEUE_NAME, comsumer);
 	}
 }

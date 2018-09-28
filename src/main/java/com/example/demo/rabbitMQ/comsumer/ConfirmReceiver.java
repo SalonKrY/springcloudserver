@@ -12,9 +12,9 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
-public class TxReceiver {
+public class ConfirmReceiver {
 
-	private static final String QUEUE_NAME = "tx_queue_name";
+	private static final String QUEUE_NAME = "confirm_queue_name";
 	
 	public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
 		//1.获得连接
@@ -23,8 +23,8 @@ public class TxReceiver {
 		//2.创建通道
 		Channel channel = connection.createChannel();
 		
+		//3.申明队列，没有就创建一个
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-		
 		
 		//4.创建一个回调的消费者
 		Consumer comsumer = new DefaultConsumer(channel){
@@ -33,7 +33,7 @@ public class TxReceiver {
             		AMQP.BasicProperties properties, byte[] body) throws IOException {
                 // 接收到的消息
                 String message = new String(body);
-                System.out.println("[TxReceiver] recevie message：" + message + "at " + new Date());
+                System.out.println("SimpleReceiver recevie message：" + message + "at " + new Date());
             }
 		};
 		channel.basicConsume(QUEUE_NAME, comsumer);

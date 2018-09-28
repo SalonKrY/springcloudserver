@@ -15,7 +15,7 @@ import com.rabbitmq.client.Envelope;
 public class SubscribeRouteTopicBlueReceiver {
 
 	private static final String EXCHANGE_NAME = "subscribe_topic_exchange";
-	private static final String QUENE_NAME = "topic_blue_quene";
+	private static final String QUEUE_NAME = "topic_blue_queue";
 	private static final String ROUTE = "topic.*.blue";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
@@ -24,9 +24,9 @@ public class SubscribeRouteTopicBlueReceiver {
 		//2.声明通道
 		Channel channel = connection.createChannel();
 		//3.声明要消费的队列
-		channel.queueDeclare(QUENE_NAME, false, false, false, null);
+		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		//4.绑定交换机
-		channel.queueBind(QUENE_NAME, EXCHANGE_NAME, ROUTE);
+		channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, ROUTE);
 		//5.同时间最多消费一个message
 		channel.basicQos(1);
 		
@@ -49,6 +49,6 @@ public class SubscribeRouteTopicBlueReceiver {
 			}
 		};
 		
-		channel.basicConsume(QUENE_NAME, false, consumer);
+		channel.basicConsume(QUEUE_NAME, false, consumer);
 	}
 }

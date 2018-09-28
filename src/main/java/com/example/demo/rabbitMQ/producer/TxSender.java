@@ -10,7 +10,7 @@ import com.rabbitmq.client.Connection;
 
 public class TxSender {
 	
-	private static final String QUENE_NAME = "tx_quene_name";
+	private static final String QUEUE_NAME = "tx_queue_name";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		//1.获得连接
@@ -20,7 +20,7 @@ public class TxSender {
 		Channel channel = connection.createChannel();
 		
 		//3.申明队列，没有就创建一个
-		channel.queueDeclare(QUENE_NAME, false, false, false, null);
+		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		
 		try {
 			//开启事务
@@ -29,7 +29,7 @@ public class TxSender {
 			
 			String message = "TxSender RabbitMQ send: Hello World.";
 			//4.发送消息
-			channel.basicPublish("", QUENE_NAME, null, message.getBytes());
+			channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 			System.out.println("[TxSender] public message：" + message + "at " + new Date());
 			int i = 1/0;
 			

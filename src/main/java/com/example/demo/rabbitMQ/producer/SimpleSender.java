@@ -10,7 +10,7 @@ import com.rabbitmq.client.Connection;
 
 public class SimpleSender {
 	
-	private static final String QUENE_NAME = "simple_quene_name";
+	private static final String QUEUE_NAME = "simple_queue_name";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		//1.获得连接
@@ -29,7 +29,7 @@ public class SimpleSender {
 		 * autoDelete: true 表示当没有任何消费者使用时，自动删除该队列
 		 * arguments: 该队列其他配置参数
 		 */
-		channel.queueDeclare(QUENE_NAME, false, false, false, null);
+		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		
 		String message = "Simple RabbitMQ send: Hello World.";
 		//4.发送消息
@@ -41,7 +41,7 @@ public class SimpleSender {
 		 * props: 其他消息属性，路由头信息等等
 		 * body: 消息byte内容
 		 */
-		channel.basicPublish("", QUENE_NAME, null, message.getBytes());
+		channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 		System.out.println("SimpleSender public message：" + message + "at " + new Date());
 		
 		//5.关闭连接

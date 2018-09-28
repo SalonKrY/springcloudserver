@@ -15,7 +15,7 @@ import com.rabbitmq.client.Envelope;
 public class SubscribeEmailReceiver {
 
 	private static final String EXCHANGE_NAME = "subscribe_fanout_exchange";
-	private static final String QUENE_NAME = "email_quene";
+	private static final String QUEUE_NAME = "email_queue";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		//1.获得连接
@@ -23,9 +23,9 @@ public class SubscribeEmailReceiver {
 		//2.声明通道
 		Channel channel = connection.createChannel();
 		//3.声明要消费的队列
-		channel.queueDeclare(QUENE_NAME, false, false, false, null);
+		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		//4.绑定交换机
-		channel.queueBind(QUENE_NAME, EXCHANGE_NAME, "");
+		channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
 		//5.同时间最多消费一个message
 		channel.basicQos(1);
 		
@@ -48,6 +48,6 @@ public class SubscribeEmailReceiver {
 			}
 		};
 		
-		channel.basicConsume(QUENE_NAME, false, consumer);
+		channel.basicConsume(QUEUE_NAME, false, consumer);
 	}
 }
