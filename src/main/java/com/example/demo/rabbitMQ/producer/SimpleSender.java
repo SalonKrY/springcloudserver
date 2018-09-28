@@ -33,8 +33,15 @@ public class SimpleSender {
 		
 		String message = "Simple RabbitMQ send: Hello World.";
 		//4.发送消息
+		/**
+		 * void basicPublish(String exchange, String routingKey, BasicProperties props, 
+		 * byte[] body) throws IOException;
+		 * exchange: 指定交换机，这里为简单队列，不需要使用，默认""即可，不能为null
+		 * routingKey: 路由key，这里为队列名称
+		 * props: 其他消息属性，路由头信息等等
+		 * body: 消息byte内容
+		 */
 		channel.basicPublish("", QUENE_NAME, null, message.getBytes());
-		
 		System.out.println("SimpleSender public message：" + message + "at " + new Date());
 		
 		//5.关闭连接
