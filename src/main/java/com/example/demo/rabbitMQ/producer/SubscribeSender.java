@@ -21,13 +21,11 @@ public class SubscribeSender {
 		//3.声明一个交换机
 		channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
 		
-		String message = "subscribe fanout message";
-		
-		//4.发送消息
+		//发送消息
+		String message = "subscribe message";
 		channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
-		
 		System.out.println("Subscribe send message :" + message + "at " + new Date());
-		
+				
 		channel.close();
 		connection.close();
 	}
