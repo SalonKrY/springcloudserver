@@ -26,12 +26,13 @@ public class TxSender {
 			//开启事务
 			channel.txSelect();
 			
-//			int i = 1/0;
 			
 			String message = "TxSender RabbitMQ send: Hello World.";
 			//4.发送消息
 			channel.basicPublish("", QUENE_NAME, null, message.getBytes());
 			System.out.println("[TxSender] public message：" + message + "at " + new Date());
+			int i = 1/0;
+			
 			//提交事务
 			channel.txCommit();
 		} catch (Exception e) {
