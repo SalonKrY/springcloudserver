@@ -15,7 +15,7 @@ import com.rabbitmq.client.Envelope;
 public class SubscribeErrorRouteReceiver {
 
 	private static final String EXCHANGE_NAME = "subscribe_direct_exchange";
-	private static final String QUENE_NAME = "error_rounte_quene";
+	private static final String QUENE_NAME = "error_route_quene";
 	private static final String ERROR_ROUTE = "error";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {

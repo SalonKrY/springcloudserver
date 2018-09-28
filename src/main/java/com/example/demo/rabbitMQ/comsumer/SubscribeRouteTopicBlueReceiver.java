@@ -12,11 +12,11 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
-public class SubscribeInfoRouteReceiver {
+public class SubscribeRouteTopicBlueReceiver {
 
-	private static final String EXCHANGE_NAME = "subscribe_direct_exchange";
-	private static final String QUENE_NAME = "info_route_quene";
-	private static final String INFO_ROUTE = "info";
+	private static final String EXCHANGE_NAME = "subscribe_topic_exchange";
+	private static final String QUENE_NAME = "topic_blue_quene";
+	private static final String ROUTE = "topic.*.blue";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		//1.获得连接
@@ -26,7 +26,7 @@ public class SubscribeInfoRouteReceiver {
 		//3.声明要消费的队列
 		channel.queueDeclare(QUENE_NAME, false, false, false, null);
 		//4.绑定交换机
-		channel.queueBind(QUENE_NAME, EXCHANGE_NAME, INFO_ROUTE);
+		channel.queueBind(QUENE_NAME, EXCHANGE_NAME, ROUTE);
 		//5.同时间最多消费一个message
 		channel.basicQos(1);
 		
@@ -36,14 +36,14 @@ public class SubscribeInfoRouteReceiver {
 			public void handleDelivery(String consumerTag,Envelope envelop,AMQP.BasicProperties properties,
 					byte[] body) throws IOException {
 				String message = new String(body);
-				System.out.println("[InfoRouteReceiver] receive message : " + message + " at " + new Date());
+				System.out.println("[TopicBlueReceiver] receive message : " + message + " at " + new Date());
 				
 				try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    System.out.println("[InfoRouteReceiver] receive done ");
+                    System.out.println("[TopicBlueReceiver] receive done ");
                     channel.basicAck(envelop.getDeliveryTag(), false);
                 }
 			}
