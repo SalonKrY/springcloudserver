@@ -4,21 +4,16 @@ spring:
  http:
   encoding:
    force: true
- datasource:    
-   driver-class-name: com.mysql.jdbc.Driver    
-   url: jdbc:mysql://localhost:3306/springboot    
-   username: root    
-   password: root
- rabbitmq:
-  host: 127.0.0.1
-  port: 5672
-  username: admin
-  password: admin
-  virtual-host: /
-  publisher-confirms: true
-  listener:
-      simple:
-        prefetch: 1 #0为轮询，1为分发默认分发
+ application:
+  #注意这里是作为服务注册名称，在eureka注册中心注册这个名称，自动转化为全大写，之后调用服务用服务名调用
+  name: user-service 
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+          
 mybatis:
  mapper-locations: classpath:mybatis/mapper/*.xml
  config-location: classpath:mybatis/mybatis-config.xml
