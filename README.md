@@ -1,3 +1,3 @@
-# authorized by chentianhao on 9/25/2018
-
-快速构造SpringBoot项目，整合websocket,CORS,mybatis,druid等。
+# springcloudV0.1
+authorized by chentianhao on 9/29/2018
+SpringCloud实验项目
