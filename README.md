@@ -1,3 +1,3 @@
-# springcloudV0.1
-authorized by chentianhao on 9/29/2018
-SpringCloud实验项目
+# springcloudserver
+a simple spring-cloud-server
+authorized by chentianhao on 9/30/2018 SpringCloudServer注册中心
